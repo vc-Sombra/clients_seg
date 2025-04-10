@@ -14,8 +14,8 @@ O método RFM classifica clientes com base em:
 
 A segmentação foi feita da seguinte forma:  
 1. **Pré-processamento**:  
-   - Filtragem de pedidos concluídos pelo método cartão de crédito e filtragem de nulos.  
-   - Cálculo da data da última compra e valor total por cliente.  
+   - Conversão da data de aprovação de pedidos para datetime e exclusão de nulos.
+   - Filtragem de pedidos concluídos pelo método cartão de crédito.    
 2. **Cálculo RFM**:  
    - `Recência`: Diferença em dias entre a última compra e a data de análise.  
    - `Frequência`: Número de pedidos por cliente.  
@@ -27,7 +27,7 @@ A segmentação foi feita da seguinte forma:
      - **Fidelização Prioritária** (R = 4 ou 5, F = 4 ou 5, M = 4).  
      - **Oportunidade de Upsell** (R = 3 ou 4, F = 3 ou 4 ou 5, M = 3 ou 4).  
      - **Reativação Crítica** (R = 1 ou 2, F = 1 ou 2, M = 1 ou 2).       
-     - **Neutros** (Valores de R, F e M não se enquadram nas outras categorias).           
+     - **Neutros** (Valores de R, F e M que não se enquadram nas outras categorias).           
 
 ---
 
@@ -38,7 +38,8 @@ A segmentação foi feita da seguinte forma:
 
 ---
 
-## 📂 **Estrutura do Projeto**  
+## 📂 **Estrutura do Projeto** 
+```plaintext 
 ├── data/
 │ ├── olist_customers_dataset.csv # Dados de consumidores.
 │ ├── olist_order_payments_dataset.csv # Dados de pagamentos.
@@ -46,6 +47,7 @@ A segmentação foi feita da seguinte forma:
 ├── clients_seg.xlsx # Excel com o dataframe final do cálculo RFM.
 ├── main.ipynb # Notebook com toda a análise RFM.
 └── README.md # Documentação do projeto.
+```
 
 ---
 
@@ -58,11 +60,9 @@ A segmentação foi feita da seguinte forma:
    - Pré-processamento (filtrar pedidos, calcular RFM)
    - Visualização (excel de segmentação)
 
-
 ---
 
 ### **📊 Resultados**  
-
 Exemplo da tabela exportada para Excel com os scores RFM:  
 
 ![Tabela RFM](images/rfm_table.png)
